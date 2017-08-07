@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+echo -e "Weather Service v1.2.145\n"
+
+failure=0
+
+if [[ -f $CERTIFICATE && `openssl verify $CERTIFICATE 2> /dev/null | tail -n1` == "OK" ]]; then
+  echo "Successfully loaded certificate..."
+else
+  echo "FATAL: Failed to load certificate."
+  failure=1
+fi
+
+
+if [ -f $PRIVATE_KEY ] && openssl rsa -noout -in $PRIVATE_KEY 2> /dev/null; then
+  echo "Successfully loaded private key..."
+else
+  echo "FATAL: Failed to load private key."
+  failure=1
+fi
+
+echo 
+
+[[ $failure == 0 ]] && echo "Running." || echo "Exiting: A fatal error has occurred."
+
+exit 0
+

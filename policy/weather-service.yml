@@ -1,0 +1,20 @@
+---
+- !policy 
+  id: weather_service
+  owner: !group /devops
+  body:
+    - &ssl
+      - !variable
+        id: ssl/private_key
+        mime_type: application/x-pem-file
+
+      - !variable
+        id: ssl/certificate
+        mime_type: application/x-x509-ca-cert
+
+    - !layer
+ 
+    - !permit
+      role: !layer
+      privilege: [ read, execute ]
+      resource: *ssl
