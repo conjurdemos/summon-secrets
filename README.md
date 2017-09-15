@@ -1,4 +1,4 @@
-# summon-example
+# summon-secrets
 This is a working demonstration of how to fetch secrets from Conjur using Summon.
 
 ## Expectations
